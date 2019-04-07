@@ -1,6 +1,9 @@
 package com.javanme.java8;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * Clase con ejercicios nivel básico
@@ -17,7 +20,11 @@ public class Basico {
      * @return Lista que contiene las palabras en mayúsculas
      */
     public List<String> ejercicio1(List<String> palabras) {
-        throw new UnsupportedOperationException();
+
+    	return palabras.stream()
+    			.map(String::toUpperCase)
+    			.collect(Collectors.toList());
+
     }
 
     /**
@@ -29,7 +36,10 @@ public class Basico {
      * @return lista que contiene cadenas de texto cuyo tamaño de caracteres es superior a 10
      */
     public List<String> ejercicio2(List<String> listado) {
-        throw new UnsupportedOperationException();
+        
+    	return listado.stream()
+    			.filter(s -> s.length() > 10)
+    			.collect(Collectors.toList());
     }
 
     /**
@@ -42,7 +52,12 @@ public class Basico {
      * @see java.util.stream.Collectors
      */
     public String ejercicio3(List<String> listado) {
-        throw new UnsupportedOperationException();
+
+    	return listado.stream()
+    			.skip(2)
+    			.limit(3)
+    			.collect(Collectors.joining("-"));
+    	
     }
 
     /**
@@ -56,7 +71,10 @@ public class Basico {
      * @see java.util.stream.Collectors
      */
     public List<Integer> ejercicio4(List<String> listado) {
-        throw new UnsupportedOperationException();
+        return listado.stream()
+        		.map(Integer::parseInt)
+        		.sorted()
+        		.collect(Collectors.toList());
     }
 
     /**
@@ -70,6 +88,9 @@ public class Basico {
      * @see java.util.stream.Collectors
      */
     public List<String> ejercicio5(List<String> listado) {
-        throw new UnsupportedOperationException();
+        return listado.stream()
+        		.sorted()
+        		.sorted(Comparator.comparing(String::length))
+        		.collect(Collectors.toList());
     }
 }

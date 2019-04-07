@@ -1,9 +1,12 @@
 package com.javanme.java8;
 
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Map;
 import java.util.OptionalInt;
+import java.util.stream.Collectors;
 
 /**
  * Clase con ejercicios nivel intermedio
@@ -20,11 +23,20 @@ public class Intermedio {
      *
      * @param archivo Ruta al archivo que se desea evaluar
      * @return Cantidad de líneas en el archivo
+     * @throws IOException 
      * @see java.nio.file.Files
      * @see java.util.stream.Stream
      */
     public long ejercicio1(Path archivo) {
-        throw new UnsupportedOperationException();
+    	
+        try {
+			return Files.lines(archivo)
+					.filter(s -> !s.isEmpty())        		
+					.collect(Collectors.summarizingLong(a -> Long.parseLong(a))).getCount();
+		} catch (IOException e) {
+			throw new Error();
+		}
+        		
     }
 
     /**
